@@ -15,6 +15,7 @@ function App() {
     const [isError, setIsError] = useState(false);
 
     useEffect(() => {
+        console.log("FETCH CALLED");
         async function fetchImages() {
             try {
                 const response = await fetch("/api/images");
