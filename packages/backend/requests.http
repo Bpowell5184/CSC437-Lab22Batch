@@ -1,0 +1,12 @@
+### Get all images
+# This is a comment
+GET http://localhost:3000/api/images
+
+### A second example.  Each request must be delimited by a triple hash
+POST http://localhost:3000/api/test
+Content-Type: application/json # Content-Type header is a must if you're sending JSON
+# Request body separated from headers by newline
+
+GET http://localhost:3000/api/images?search=Huskies
+
+{ "a": 1, "b": 2 }

@@ -30,8 +30,8 @@ export class ImageProvider {
         this.collection = this.mongoClient.db().collection(collectionName);
     }
 
-    async getAllImages(): Promise<IApiImageData[]> {
-        const pipeline = [
+    async getAllImages(search?: string): Promise<IApiImageData[]> {
+        const pipeline: any[] = [
             {
                 $lookup: {
                     from: "users",
@@ -54,6 +54,12 @@ export class ImageProvider {
                 }
             }
         ];
+
+        if (search) {
+            pipeline.unshift({
+              $match: { name: { $regex: search, $options: "i" } }  // case-insensitive
+            });
+        }
 
         return await this.collection.aggregate<IApiImageData>(pipeline).toArray();
     }
